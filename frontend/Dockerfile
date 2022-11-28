@@ -4,7 +4,7 @@ COPY package*.json ./
 RUN npm ci 
 COPY . /app
 RUN npm run build
-FROM nginx:1.23.1-alpine
+FROM nginx:latest
 COPY --from=build /app/build /usr/share/nginx/html
 EXPOSE 81
 CMD ["nginx", "-g", "daemon off;"]

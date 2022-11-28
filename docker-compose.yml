@@ -1,4 +1,4 @@
-version: '1.1'
+version: '1.2'
 services:
   frontend-api:
     container_name: kupipodariday-frontend
@@ -17,10 +17,12 @@ services:
     depends_on:
       - postgres
   postgres:
-    image: "postgres:12"
-    env_file: ./backend/.env  
+    container_name: kupipodariday-database
+    image: postgres:12
+    env_file: ./backend/.env
     volumes:
-      - postgres-data:/var/lib/postgresql/data/pgdata 
+      - postgres-data:/var/lib/postgresql/data/pgdata
+    restart: always
 volumes:
   postgres-data:
     driver: local
